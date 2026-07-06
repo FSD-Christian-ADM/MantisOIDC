@@ -13,4 +13,6 @@
 
     $oidc->setRedirectUrl(substr(config_get('path'), 0, -1).plugin_page( 'redirect'));
 
+    $oidc->addScope(plugin_config_get('oidc_scopes'));
+
     $oidc->authenticate();

@@ -5,4 +5,5 @@ $s_plugin_MantisOIDC_save = 'SAVE';
 $s_plugin_MantisOIDC_login_button_default = 'Sign in';
 $s_plugin_MantisOIDC_seperator_text = 'OR';
 $s_plugin_MantisOIDC_user_not_available = 'Sorry, there is no account associated with the provided login data. Please contact an <a href="mailto:%1$s" title="Contact Admin.">Administrator</a>';
+$s_plugin_MantisOIDC_user_id_not_transmitted = 'Sorry, the identity provider did not transmit the correct login data. Please contact an <a href="mailto:%1$s" title="Contact Admin.">Administrator</a>';
 

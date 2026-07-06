@@ -37,7 +37,10 @@ class MantisOIDCPlugin extends MantisPlugin {
 	function config() {
 		return array(
 			'clientId'     => '',
-			'clientSecret' => ''
+			'clientSecret' => '',
+			'oidc_scopes' => array('openid'),
+			'oidc_uid_claim' => 'name',
+			'oidc_find_user_by' => 'name',
 		);
 	}
 

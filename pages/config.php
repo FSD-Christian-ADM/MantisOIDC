@@ -10,6 +10,13 @@ layout_page_header( plugin_lang_get( 'title' ) );
 layout_page_begin( 'manage_overview_page.php' );
 
 print_manage_menu( 'manage_plugin_page.php' );
+
+$oidc_scopes = plugin_config_get( 'oidc_scopes' );
+if (empty($oidc_scopes)) {
+	$oidc_scopes = ["openid"];
+}
+$oidc_find_user_by = plugin_config_get( 'oidc_find_user_by' );
+
 ?>
     <div class="col-md-12 col-xs-12">
         <div class="space-10"></div>
@@ -52,6 +59,32 @@ print_manage_menu( 'manage_plugin_page.php' );
                                    value="<?php echo plugin_config_get( 'openIDClientSecret', '' ); ?>">
                         </div>
                     </div>
+
+					<div class="form-group">
+						<label for="oidc_scopes" class="col-sm-3 control-label label-info label-white">Scopes<br /><span class="smaller-75">Scopes to request from the IdP (Space separated)</span></label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="oidc_scopes" name="oidc_scopes" placeholder="openid"
+								   value="<?php echo join(" ", $oidc_scopes); ?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="oidc_uid_claim" class="col-sm-3 control-label label-info label-white">User ID Claim<br /><span class="smaller-75">Claim that contains the value that the user will be identified by. (e.g. 'sub', 'name', 'email')</span></label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="oidc_uid_claim" name="oidc_uid_claim" placeholder="name"
+									value="<?php echo plugin_config_get( 'oidc_uid_claim' ); ?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="oidc_find_user_by" class="col-sm-3 control-label label-info label-white">Find User By<br /><span class="smaller-75">Select whether to match users by name or by email. This depends on what value is transmitted by the IdP in the selected user ID claim.</span></label>
+						<div class="col-sm-7">
+							<select class="form-control" id="oidc_find_user_by" name="oidc_find_user_by">
+								<option value="email" <?php echo ($oidc_find_user_by == 'email') ? 'selected' : ''; ?>>Email</option>
+								<option value="name" <?php echo ($oidc_find_user_by == 'name') ? 'selected' : ''; ?>>Name</option>
+							</select>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="oidc_role" class="col-sm-3 control-label label-info label-white">User Role<br /><span class="smaller-75">Role in you OIDC system a user has to have, to successfully login into MantisBT. Leave empty if every user is allowed to login (as long as they have an MantisBT account).</span></label>

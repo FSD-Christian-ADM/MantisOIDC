@@ -5,3 +5,4 @@ $s_plugin_MantisOIDC_save = 'Speichern';
 $s_plugin_MantisOIDC_login_button_default = 'Anmelden';
 $s_plugin_MantisOIDC_seperator_text = 'ODER';
 $s_plugin_MantisOIDC_user_not_available = 'Es gibt kein Konto, das mit diesen Benutzerdaten verbunden ist. Bitte wenden Sie sich an einen <a href="mailto:%1$s" title="Den Webmaster per E-Mail kontaktieren.">Administrator</a>.';
+$s_plugin_MantisOIDC_user_id_not_transmitted = 'Der Identity Provider hat Daten, die zum Login erforderlich sind nicht übermittelt. Bitte wenden Sie sich an einen <a href="mailto:%1$s" title="Den Webmaster per E-Mail kontaktieren.">Administrator</a>.';

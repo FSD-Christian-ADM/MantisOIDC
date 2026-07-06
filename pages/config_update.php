@@ -7,6 +7,9 @@
     plugin_config_set('openIDAuthURL', strip_tags(gpc_get_string('oidaurl')));
     plugin_config_set('openIDClientID', strip_tags(gpc_get_string('oidclientid')));
     plugin_config_set('openIDClientSecret', strip_tags(gpc_get_string('oidsecret')));
+    plugin_config_set('oidc_scopes', explode(" ", strip_tags(gpc_get_string('oidc_scopes'))));
+    plugin_config_set('oidc_uid_claim', strip_tags(gpc_get_string('oidc_uid_claim')));
+    plugin_config_set('oidc_find_user_by', strip_tags(gpc_get_string('oidc_find_user_by')));
     plugin_config_set('oidc_role', strip_tags(gpc_get_string('oidc_role')));
 
     plugin_config_set('login_button_text', strip_tags(gpc_get_string('login_button_text')));

@@ -25,7 +25,31 @@
 
     $data = $oidc->introspectToken($access_token);
 
-    $user_id = user_get_id_by_name($data->username);
+    $uid_claim = plugin_config_get('oidc_uid_claim');
+    if ( !isset($data->{$uid_claim}) ) {
+        layout_login_page_begin();
+        echo '<div class="col-md-offset-3 col-md-6 col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                  <div class="space-12 hidden-480"></div>'.
+                  layout_login_page_logo().
+                 '<div class="space-24 hidden-480"></div>
+                 <div class="alert alert-danger"><p>' . sprintf(plugin_lang_get( 'user_id_not_transmitted' ), string_html_specialchars( config_get_global( 'webmaster_email' ) ) ) . '</p></div>
+               </div>
+              </div>';
+
+        layout_login_page_end();
+
+        return false;
+    }
+
+    $oidc_uid = $data->{$uid_claim};
+
+    $find_user_by = plugin_config_get('oidc_find_user_by');
+    if ( $find_user_by == "email" ) {
+        $user_id = user_get_id_by_email($data->email);
+    } else {
+        $user_id = user_get_id_by_name($data->username);
+    }
 
     $login_success = true;
 
